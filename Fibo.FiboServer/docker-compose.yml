@@ -1,0 +1,14 @@
+version: '3.4'
+
+services:
+  fibo.fiboserver.app:
+    image: ${DOCKER_REGISTRY-}fibofiboserverapp
+    build:
+      context: .
+      dockerfile: Fibo.FiboServer.App/Dockerfile
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    ports:
+      - 5020:80
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
