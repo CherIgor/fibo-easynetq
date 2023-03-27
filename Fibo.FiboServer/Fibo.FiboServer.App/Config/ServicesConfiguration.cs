@@ -2,7 +2,7 @@
 {
     public class ServicesConfiguration
     {
-        public string MessgeBusConnectionString { get; set; }
+        public string MessageBusConnectionString { get; set; }
 
         public bool SimulateDelay { get; set; }
 

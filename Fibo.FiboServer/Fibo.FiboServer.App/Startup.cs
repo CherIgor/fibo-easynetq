@@ -1,8 +1,6 @@
 ﻿using EasyNetQ;
 using Fibo.FiboServer.App.Config;
 using Fibo.FiboServer.App.Services;
-using Microsoft.AspNetCore.DataProtection;
-using Microsoft.Extensions.Configuration;
 
 namespace Fibo.FiboServer.App
 {
@@ -19,11 +17,11 @@ namespace Fibo.FiboServer.App
         public void ConfigureServices(IServiceCollection services)
         {
             services.Configure<ServicesConfiguration>(Configuration.GetSection("Services"));
-            var messgeBusConnectionString = Configuration.GetSection("Services:MessgeBusConnectionString").Get<string>();
+            var messageBusConnectionString = Configuration.GetSection("Services:MessageBusConnectionString").Get<string>();
 
             services
                 .AddScoped<IFiboService, FiboService>()
-                .AddScoped<IBus>((provider) => RabbitHutch.CreateBus(messgeBusConnectionString)); // на каждый запрос к серверу, чтобы избежать отваливающегося коннекта к Message Bus
+                .AddScoped<IBus>((provider) => RabbitHutch.CreateBus(messageBusConnectionString)); // на каждый запрос к серверу, чтобы избежать отваливающегося коннекта к Message Bus
 
             services.AddControllers();
 
