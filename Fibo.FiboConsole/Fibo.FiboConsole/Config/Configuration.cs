@@ -2,7 +2,7 @@
 {
     public static class Configuration
     {
-        public const int DefaltCalculationsCount = 3;
+        public const int DefaultCalculationsCount = 3;
 
         public const int CalculationRetryTimeInMs = 4000;
 

@@ -250,6 +250,7 @@ namespace Fibo.FiboConsole.Calculation
                     _hasProgressFromPreviousCheck = true;
                     return true;
                 }
+
                 return false;
             }
         }

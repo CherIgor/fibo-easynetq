@@ -19,7 +19,7 @@ namespace Fibo.FiboConsole
                 && Int32.TryParse(args[0], out calculationsCount)
                 && calculationsCount > 0))
             {
-                calculationsCount = Configuration.DefaltCalculationsCount;
+                calculationsCount = Configuration.DefaultCalculationsCount;
                 isCalculationsCountFromArgs = false;
             }
 
@@ -62,11 +62,13 @@ namespace Fibo.FiboConsole
                     Console.WriteLine($"Input \"{COMMAND_STOP}\" to stop the calculations");
                     Console.WriteLine($"Input \"{COMMAND_EXIT}\" to exit");
                 });
+
                 var userInput = Console.ReadLine()?.Trim()?.ToLower();
                 WriteToConsole(() =>
                 {
                     Console.WriteLine("==================================================");
                 });
+
                 if (userInput == COMMAND_STATUS)
                 {
                     WriteToConsole(() =>
@@ -78,25 +80,27 @@ namespace Fibo.FiboConsole
                         }
                     });
                 }
-                if (userInput == COMMAND_STOP)
+                else if (userInput == COMMAND_STOP)
                 {
                     cancelTokenSource.Cancel();
                     foreach (var calcProcessor in calculations)
                     {
                         calcProcessor.Dispose();
                     }
+
                     WriteToConsole(() =>
                     {
                         Console.WriteLine($"Calculations have been stopped");
                     });
                 }
-                if (userInput == COMMAND_EXIT)
+                else if (userInput == COMMAND_EXIT)
                 {
                     cancelTokenSource.Cancel();
                     foreach (var calcProcessor in calculations)
                     {
                         calcProcessor.Dispose();
                     }
+
                     WriteToConsole(() =>
                     {
                         Console.WriteLine($"Calculations have been stopped");
